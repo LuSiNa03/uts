@@ -39,7 +39,7 @@ Website ini telah disesuaikan sepenuhnya dengan estetika visual kelas atas, meng
 5.  📧 **Tombol Kontak Skala Besar (Stacked & Enlarged):**
     *   Halaman kontak mengusung tombol kartu bertumpuk vertikal dengan ukuran besar (`p-6`, `rounded-3xl`, `shadow-lg`) untuk memastikan alamat email Anda yang panjang (`fadhilafiqbadruzzaman2402@gmail.com`) tertulis penuh, rapi, dan responsif di semua perangkat mobile, dilengkapi efek animasi membesar saat kursor melayang (*hover scale*).
 6.  🚲 **Tampilan "Project Saya" (E-Bikes Platform):**
-    *   Proyek sepeda listrik Anda ditandai secara kustom di halaman utama dan portofolio dengan lencana kuning **`⭐ Project Saya`**, berstatus **`On Progress`**, dan terhubung langsung ke repositori Anda di GitHub.
+    *   Proyek sepeda listrik Anda ditandai secara kustom di halaman utama dan portofolio dengan lencana kuning **`⭐ Project Saya`**, berstatus **`On Progress`**, dan terhubung langsung ke repositori GitHub Anda: [LuSiNa03/ebikes-2026](https://github.com/LuSiNa03/ebikes-2026).
 7.  ⚡ **Tailwind CSS Play CDN Failsafe:**
     *   Dilengkapi dengan pemuat Tailwind CDN otomatis di sisi layout untuk mengantisipasi jika kompiler *Vite* di dalam container Docker lokal Anda tidak dijalankan. Desain layout dijamin akan selalu tampil cantik sempurna kapan saja dan di mana saja.
 
@@ -94,6 +94,7 @@ uts/
 **Fadhil Afiq Badruzzaman**
 *   📧 **Email:** fadhilafiqbadruzzaman2402@gmail.com
 *   🔗 **GitHub:** [https://github.com/LuSiNa03](https://github.com/LuSiNa03)
+*   🚲 **Project Saya (E-Bikes Platform):** [https://github.com/LuSiNa03/ebikes-2026](https://github.com/LuSiNa03/ebikes-2026)
 *   🏫 **NIM:** 20240801119
 *   🏫 **Universitas Esa Unggul** - Teknik Informatika
 
