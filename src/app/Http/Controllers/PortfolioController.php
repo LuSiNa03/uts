@@ -11,6 +11,18 @@ class PortfolioController extends Controller
 {
     public function home()
     {
+        // Auto-create E-Bikes Rental Platform project in the database if it doesn't exist yet
+        if (!Project::where('slug', 'e-bikes-rental-platform')->exists()) {
+            Project::create([
+                'title'             => 'E-Bikes Rental Platform',
+                'short_description' => 'Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.',
+                'is_final_project'  => true,
+                'status'            => 'on_progress',
+                'github_url'        => 'https://github.com/LuSiNa03/ebikes-2026',
+                'problem_analysis'  => '<p>Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap, dirancang untuk UTS mata kuliah pemrograman web.</p>',
+            ]);
+        }
+
         $profile  = Profile::first();
         $projects = Project::orderBy('order')->take(3)->get();
         return view('portfolio.home', compact('profile', 'projects'));
@@ -18,6 +30,18 @@ class PortfolioController extends Controller
 
     public function projects()
     {
+        // Auto-create E-Bikes Rental Platform project in the database if it doesn't exist yet
+        if (!Project::where('slug', 'e-bikes-rental-platform')->exists()) {
+            Project::create([
+                'title'             => 'E-Bikes Rental Platform',
+                'short_description' => 'Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.',
+                'is_final_project'  => true,
+                'status'            => 'on_progress',
+                'github_url'        => 'https://github.com/LuSiNa03/ebikes-2026',
+                'problem_analysis'  => '<p>Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap, dirancang untuk UTS mata kuliah pemrograman web.</p>',
+            ]);
+        }
+
         $projects = Project::orderBy('order')->get();
         return view('portfolio.projects', compact('projects'));
     }

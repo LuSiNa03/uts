@@ -3,126 +3,193 @@
 
 @section('content')
 
-{{-- HERO --}}
-<section class="min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-    <div class="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-16">
-        {{-- Text --}}
-        <div class="flex-1 text-center md:text-left">
-            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
-                Open to Work
-            </span>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
-                Hi, I'm<br>
-                <span class="text-blue-700">{{ $profile?->name ?? 'Nama Kamu' }}</span>
+{{-- HERO SECTION --}}
+<section class="relative min-h-[85vh] flex items-center overflow-hidden py-16 sm:py-24">
+    <!-- Subtle Background Glows -->
+    <div class="absolute top-1/4 right-0 w-80 h-80 bg-red-100/20 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-red-50/20 rounded-full blur-3xl -z-10"></div>
+
+    <div class="w-full max-w-5xl mx-auto px-6 custom-grid">
+        {{-- Text Content --}}
+        <div class="text-left order-2 lg:order-1">
+            {{-- Status Badge --}}
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-maroon-soft border border-maroon-border text-maroon text-xs font-bold tracking-wide mb-6">
+                <span class="w-2 h-2 rounded-full bg-maroon animate-pulse"></span>
+                Tersedia untuk Magang / Kolaborasi
+            </div>
+
+            {{-- Main Title --}}
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-4 tracking-tight">
+                Hai, Saya <span class="text-maroon">Fadhil Afiq Badruzzaman</span>
             </h1>
-            <p class="text-xl text-gray-500 mb-6 font-medium">{{ $profile?->tagline ?? 'Full Stack Developer' }}</p>
-            <p class="text-gray-600 leading-relaxed mb-8 max-w-lg">
-                {{ $profile?->bio ?? 'Bio singkat kamu di sini.' }}
+
+            {{-- Tagline --}}
+            <p class="text-lg font-bold text-maroon mb-6 tracking-wide">Full Stack Web Developer</p>
+
+            {{-- Bio --}}
+            <p class="text-gray-600 leading-relaxed text-sm sm:text-base mb-8 font-medium">
+                Saya adalah mahasiswa aktif Program Studi Teknik Informatika di Universitas Esa Unggul yang memiliki minat besar dan fokus mendalam pada pengembangan aplikasi web modern. Berpengalaman dalam merancang serta membangun aplikasi web yang responsif, berkinerja tinggi, aman, dan mudah diskalakan. Saya berkomitmen untuk terus menghadirkan pengalaman pengguna (user experience) yang optimal serta solusi rekayasa perangkat lunak yang andal dengan pendekatan arsitektur kode yang bersih.
             </p>
 
-            {{-- Skills --}}
-            @if($profile?->skills)
-            <div class="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
-                @foreach($profile->skills as $skill)
-                <span class="px-3 py-1 bg-white border border-blue-200 text-blue-700 rounded-full text-sm font-medium shadow-sm">
-                    {{ $skill }}
-                </span>
-                @endforeach
+            {{-- Tech Stack --}}
+            <div class="mb-8">
+                <p class="text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-4">Tech Stack Utama</p>
+                <div class="flex flex-wrap gap-2">
+                    @if($profile?->skills)
+                        @foreach($profile->skills as $skill)
+                            <span class="px-3 py-1.5 bg-white border border-gray-200 text-gray-500 rounded-full text-xs font-semibold shadow-sm hover:border-maroon hover:text-maroon transition duration-200">
+                                {{ $skill }}
+                            </span>
+                        @endforeach
+                    @else
+                        @foreach(['Laravel', 'Filament', 'Livewire', 'Docker', 'MariaDB', 'Tailwind CSS'] as $skill)
+                            <span class="px-3 py-1.5 bg-white border border-gray-200 text-gray-500 rounded-full text-xs font-semibold shadow-sm hover:border-maroon hover:text-maroon transition duration-200">
+                                {{ $skill }}
+                            </span>
+                        @endforeach
+                    @endif
+                </div>
             </div>
-            @endif
 
-            <div class="flex gap-4 justify-center md:justify-start">
+            {{-- CTA Buttons --}}
+            <div class="custom-btn-group">
                 <a href="{{ route('projects') }}"
-                   class="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold shadow-md transition">
-                    Lihat Projects
+                   class="px-6 py-3.5 bg-maroon bg-maroon-hover text-white rounded-xl text-sm font-bold shadow-md shadow-red-950/10 hover:shadow-lg transition duration-200">
+                    Eksplorasi Project
                 </a>
                 <a href="{{ route('contact') }}"
-                   class="px-6 py-3 border-2 border-blue-700 text-blue-700 hover:bg-blue-50 rounded-lg font-semibold transition">
+                   class="px-6 py-3.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl text-sm font-bold shadow-sm transition duration-200">
                     Hubungi Saya
                 </a>
-                @if($profile?->github)
-                <a href="{{ $profile->github }}" target="_blank"
-                   class="px-6 py-3 border border-gray-300 text-gray-600 hover:bg-gray-50 rounded-lg font-semibold transition">
+                <a href="https://github.com/LuSiNa03" target="_blank"
+                   class="px-6 py-3.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl text-sm font-bold shadow-sm transition duration-200">
                     GitHub
                 </a>
-                @endif
             </div>
         </div>
 
-        {{-- Avatar --}}
-        <div class="flex-shrink-0">
-            @if($profile?->avatar)
-            <img src="{{ asset('storage/' . $profile->avatar) }}"
-                 class="w-56 h-56 rounded-2xl object-cover shadow-xl border-4 border-white" alt="Avatar">
-            @else
-            <div class="w-56 h-56 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center shadow-xl">
-                <span class="text-7xl">👤</span>
+        {{-- Floating Profile Card --}}
+        <div class="flex justify-center order-1 lg:order-2">
+            <div class="w-full max-w-[340px] bg-white rounded-3xl p-4 shadow-2xl border border-gray-100/50 flex flex-col gap-4 transform hover:scale-[1.02] transition duration-300">
+                {{-- Profile Photo --}}
+                <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-inner bg-gray-50 relative border border-gray-100">
+                    @if(file_exists(storage_path('app/public/fadhil.jpg')))
+                        <img src="{{ asset('storage/fadhil.jpg') }}" class="w-full h-full object-cover" alt="Profile Photo">
+                    @elseif(file_exists(public_path('fadhil.jpg')))
+                        <img src="{{ asset('fadhil.jpg') }}" class="w-full h-full object-cover" alt="Profile Photo">
+                    @elseif($profile?->avatar)
+                        <img src="{{ asset('storage/' . $profile->avatar) }}" class="w-full h-full object-cover" alt="Profile Photo">
+                    @else
+                        <!-- Clean Premium Placeholder -->
+                        <div class="w-full h-full bg-maroon-soft flex flex-col items-center justify-center p-6 text-center">
+                            <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center text-4xl shadow-md mb-4 border border-red-100">👨‍💻</div>
+                            <h4 class="text-base font-black text-gray-900 mb-1">Fadhil Afiq Badruzzaman</h4>
+                            <p class="text-xs font-bold text-maroon uppercase tracking-wider">Teknik Informatika</p>
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Campus Label Box --}}
+                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4">
+                    <p class="text-[10px] font-black text-maroon uppercase tracking-wider mb-1">Universitas Esa Unggul</p>
+                    <h3 class="text-base font-bold text-gray-900 mb-0.5">Teknik Informatika</h3>
+                    <p class="text-xs text-gray-500 font-medium">Fokus pada Full Stack Web Development</p>
+                </div>
             </div>
-            @endif
         </div>
     </div>
 </section>
 
 {{-- FEATURED PROJECTS --}}
-<section class="max-w-6xl mx-auto px-6 py-20">
-    <div class="flex items-center justify-between mb-10">
+<section class="max-w-5xl mx-auto px-6 py-20">
+    <div class="flex items-end justify-between mb-10">
         <div>
-            <h2 class="text-3xl font-bold text-gray-900">Featured Projects</h2>
-            <p class="text-gray-500 mt-1">Beberapa project pilihan yang pernah saya kerjakan.</p>
+            <div class="inline-block px-3 py-1 rounded-full bg-maroon-soft text-maroon text-[10px] font-bold uppercase tracking-wider mb-2">Portfolio</div>
+            <h2 class="text-3xl font-black text-gray-900 tracking-tight">Featured Projects</h2>
+            <p class="text-gray-500 mt-1 text-sm font-medium">Beberapa project pilihan yang pernah saya kerjakan.</p>
         </div>
-        <a href="{{ route('projects') }}" class="text-blue-700 font-semibold hover:underline text-sm">
-            Lihat Semua →
+        <a href="{{ route('projects') }}" class="text-maroon font-bold hover:text-maroon-hover transition text-sm flex items-center gap-1">
+            Lihat Semua <span class="text-xs">→</span>
         </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        @forelse($projects as $project)
+        {{-- E-Bikes Rental Platform --}}
+        <a href="https://github.com/LuSiNa03/ebikes-2026" target="_blank"
+           class="group bg-white border border-yellow-400/80 rounded-2xl overflow-hidden shadow-md shadow-yellow-100/20 hover:shadow-xl hover:border-red-200 transition duration-300 relative">
+            <div class="absolute top-3 left-3 z-10 bg-yellow-400 text-yellow-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
+                ⭐ Project Saya
+            </div>
+            <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
+                <span class="text-5xl transform group-hover:scale-110 transition duration-300">🚲</span>
+            </div>
+            <div class="p-5">
+                <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-maroon transition duration-200">
+                    E-Bikes Rental Platform
+                </h3>
+                <p class="text-gray-500 text-xs sm:text-sm mb-4 leading-relaxed font-medium">Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.</p>
+                <div class="flex justify-between items-center">
+                    <span class="inline-block text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-100">
+                        On Progress
+                    </span>
+                    <span class="text-xs text-gray-400 font-semibold group-hover:text-maroon transition duration-200">Buka GitHub →</span>
+                </div>
+            </div>
+        </a>
+
+        {{-- Filter out the hardcoded e-bikes project to avoid duplication --}}
+        @forelse($projects->whereNotIn('slug', ['project-akhir', 'e-bikes-rental-platform']) as $project)
         <a href="{{ route('projects.detail', $project->slug) }}"
-           class="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:border-blue-300 transition duration-300">
+           class="group bg-white border border-gray-200/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-red-200 transition duration-300">
             @if($project->thumbnail)
-            <img src="{{ asset('storage/' . $project->thumbnail) }}"
-                 class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+            <div class="w-full h-48 overflow-hidden">
+                <img src="{{ asset('storage/' . $project->thumbnail) }}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
             @else
-            <div class="w-full h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-                <span class="text-5xl">🚀</span>
+            <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
+                <span class="text-5xl transform group-hover:scale-110 transition duration-300">🚀</span>
             </div>
             @endif
             <div class="p-5">
-                <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-blue-700 transition">
+                <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-maroon transition duration-200">
                     {{ $project->title }}
                 </h3>
-                <p class="text-gray-500 text-sm mb-3">{{ Str::limit($project->short_description, 90) }}</p>
-                <span class="inline-block text-xs px-2 py-1 rounded-full font-medium
-                    {{ $project->status === 'completed' ? 'bg-green-100 text-green-700' :
-                       ($project->status === 'on_progress' ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700') }}">
-                    {{ ucfirst(str_replace('_', ' ', $project->status)) }}
-                </span>
+                <p class="text-gray-500 text-xs sm:text-sm mb-4 leading-relaxed font-medium">{{ Str::limit($project->short_description, 90) }}</p>
+                <div class="flex justify-between items-center">
+                    <span class="inline-block text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider
+                        {{ $project->status === 'completed' ? 'bg-green-50 text-green-700 border border-green-100' :
+                           ($project->status === 'on_progress' ? 'bg-blue-50 text-blue-700 border border-blue-100' : 'bg-yellow-50 text-yellow-700 border border-yellow-100') }}">
+                        {{ str_replace('_', ' ', $project->status) }}
+                    </span>
+                    <span class="text-xs text-gray-400 font-semibold group-hover:text-maroon transition duration-200">Detail →</span>
+                </div>
             </div>
         </a>
         @empty
-        <p class="text-gray-400 col-span-3 text-center py-10">Belum ada project.</p>
         @endforelse
     </div>
 </section>
 
-{{-- STATS / ABOUT STRIP --}}
-<section class="bg-blue-700 text-white py-16">
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-            <p class="text-4xl font-extrabold">{{ $profile?->skills ? count($profile->skills) : 0 }}+</p>
-            <p class="text-blue-200 mt-1 text-sm">Tech Skills</p>
+{{-- STATS STRIP --}}
+<section class="bg-maroon text-white py-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+        <div class="transform hover:scale-105 transition duration-300">
+            <p class="text-4xl font-black tracking-tight">{{ $profile?->skills ? count($profile->skills) : 0 }}+</p>
+            <p class="text-red-200 mt-1 text-xs font-bold uppercase tracking-wider">Tech Skills</p>
         </div>
-        <div>
-            <p class="text-4xl font-extrabold">{{ \App\Models\Project::count() }}</p>
-            <p class="text-blue-200 mt-1 text-sm">Total Projects</p>
+        <div class="transform hover:scale-105 transition duration-300">
+            <p class="text-4xl font-black tracking-tight">{{ \App\Models\Project::count() }}</p>
+            <p class="text-red-200 mt-1 text-xs font-bold uppercase tracking-wider">Total Projects</p>
         </div>
-        <div>
-            <p class="text-4xl font-extrabold">{{ \App\Models\Project::where('status','completed')->count() }}</p>
-            <p class="text-blue-200 mt-1 text-sm">Completed</p>
+        <div class="transform hover:scale-105 transition duration-300">
+            <p class="text-4xl font-black tracking-tight">{{ \App\Models\Project::where('status','completed')->count() }}</p>
+            <p class="text-red-200 mt-1 text-xs font-bold uppercase tracking-wider">Completed</p>
         </div>
-        <div>
-            <p class="text-4xl font-extrabold">{{ \App\Models\ContactMessage::count() }}</p>
-            <p class="text-blue-200 mt-1 text-sm">Pesan Masuk</p>
+        <div class="transform hover:scale-105 transition duration-300">
+            <p class="text-4xl font-black tracking-tight">{{ \App\Models\ContactMessage::count() }}</p>
+            <p class="text-red-200 mt-1 text-xs font-bold uppercase tracking-wider">Pesan Masuk</p>
         </div>
     </div>
 </section>

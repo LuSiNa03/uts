@@ -1,56 +1,78 @@
 @extends('layouts.portfolio')
-@section('title', 'Projects')
+@section('title', 'Projects - Portfolio')
 
 @section('content')
-<section class="bg-gradient-to-b from-blue-50 to-white py-20">
-    <div class="max-w-6xl mx-auto px-6">
+<section class="py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-6">
         <div class="mb-12">
-            <span class="text-blue-700 font-semibold text-sm uppercase tracking-widest">Portofolio</span>
-            <h1 class="text-4xl font-extrabold text-gray-900 mt-2">My Projects</h1>
-            <p class="text-gray-500 mt-2">Semua project yang pernah & sedang saya kerjakan.</p>
+            <div class="inline-block px-3 py-1 rounded-full bg-maroon-soft text-maroon text-[10px] font-bold uppercase tracking-wider mb-2">Portofolio</div>
+            <h1 class="text-4xl font-black text-gray-900 tracking-tight mt-1">My Projects</h1>
+            <p class="text-gray-500 mt-2 text-sm font-medium">Semua project yang pernah & sedang saya kerjakan.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @forelse($projects as $project)
+            {{-- E-Bikes Rental Platform --}}
+            <a href="https://github.com/LuSiNa03/ebikes-2026" target="_blank"
+               class="group bg-white border border-yellow-400/80 rounded-2xl overflow-hidden shadow-md shadow-yellow-100/20 hover:shadow-xl hover:border-red-200 transition duration-300 relative">
+                <div class="absolute top-3 left-3 z-10 bg-yellow-400 text-yellow-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
+                    ⭐ Project Saya
+                </div>
+                <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
+                    <span class="text-5xl transform group-hover:scale-110 transition duration-300">🚲</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-maroon transition duration-200">
+                        E-Bikes Rental Platform
+                    </h3>
+                    <p class="text-gray-500 text-xs sm:text-sm mb-4 leading-relaxed font-medium">Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="inline-block text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-100">
+                            On Progress
+                        </span>
+                        <span class="text-xs text-gray-400 font-bold group-hover:text-maroon transition duration-200">Buka GitHub →</span>
+                    </div>
+                </div>
+            </a>
+
+            {{-- Filter out the hardcoded e-bikes project to avoid duplication --}}
+            @forelse($projects->whereNotIn('slug', ['project-akhir', 'e-bikes-rental-platform']) as $project)
             <a href="{{ route('projects.detail', $project->slug) }}"
-               class="group bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 relative
-               {{ $project->is_final_project ? 'border-yellow-400' : 'border-gray-200 hover:border-blue-300' }}">
+               class="group bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 relative
+               {{ $project->is_final_project ? 'border-yellow-400/80 shadow-md shadow-yellow-100/20' : 'border-gray-200/60 hover:border-red-200' }}">
 
                 @if($project->is_final_project)
-                <div class="absolute top-3 left-3 z-10 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full">
-                    ⭐ Final Project
+                <div class="absolute top-3 left-3 z-10 bg-yellow-400 text-yellow-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
+                    ⭐ Project Saya
                 </div>
                 @endif
 
                 @if($project->thumbnail)
-                <img src="{{ asset('storage/' . $project->thumbnail) }}"
-                     class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                <div class="w-full h-48 overflow-hidden">
+                    <img src="{{ asset('storage/' . $project->thumbnail) }}"
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
                 @else
-                <div class="w-full h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-                    <span class="text-5xl">💻</span>
+                <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
+                    <span class="text-5xl transform group-hover:scale-110 transition duration-300">💻</span>
                 </div>
                 @endif
 
                 <div class="p-5">
-                    <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-blue-700 transition">
+                    <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-maroon transition duration-200">
                         {{ $project->title }}
                     </h3>
-                    <p class="text-gray-500 text-sm mb-4">{{ Str::limit($project->short_description, 90) }}</p>
+                    <p class="text-gray-500 text-xs sm:text-sm mb-4 leading-relaxed font-medium">{{ Str::limit($project->short_description, 90) }}</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs px-3 py-1 rounded-full font-medium
-                            {{ $project->status === 'completed' ? 'bg-green-100 text-green-700' :
-                               ($project->status === 'on_progress' ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700') }}">
-                            {{ ucfirst(str_replace('_', ' ', $project->status)) }}
+                        <span class="inline-block text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider
+                            {{ $project->status === 'completed' ? 'bg-green-50 text-green-700 border border-green-100' :
+                               ($project->status === 'on_progress' ? 'bg-blue-50 text-blue-700 border border-blue-100' : 'bg-yellow-50 text-yellow-700 border border-yellow-100') }}">
+                            {{ str_replace('_', ' ', $project->status) }}
                         </span>
-                        <span class="text-blue-700 text-sm font-medium">Detail →</span>
+                        <span class="text-xs text-gray-400 font-bold group-hover:text-maroon transition duration-200">Detail →</span>
                     </div>
                 </div>
             </a>
             @empty
-            <div class="col-span-3 text-center py-20 text-gray-400">
-                <p class="text-5xl mb-4">📂</p>
-                <p>Belum ada project.</p>
-            </div>
             @endforelse
         </div>
     </div>
