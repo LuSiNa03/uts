@@ -11,14 +11,23 @@ class PortfolioController extends Controller
 {
     public function home()
     {
-        // Auto-create E-Bikes Rental Platform project in the database if it doesn't exist yet
-        if (!Project::where('slug', 'e-bikes-rental-platform')->exists()) {
+        // Auto-create/update E-Bikes Rental Platform project in the database dynamically
+        $defaultSlug = env('E_BIKES_SLUG', 'ebikes-2026');
+        $defaultRepo = env('GITHUB_REPO', null);
+        
+        $existing = Project::where('title', 'E-Bikes Rental Platform')->first();
+        if ($existing) {
+            if ($existing->slug !== $defaultSlug) {
+                $existing->update(['slug' => $defaultSlug]);
+            }
+        } else {
             Project::create([
                 'title'             => 'E-Bikes Rental Platform',
+                'slug'              => $defaultSlug,
                 'short_description' => 'Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.',
                 'is_final_project'  => true,
                 'status'            => 'on_progress',
-                'github_url'        => 'https://github.com/LuSiNa03/ebikes-2026',
+                'github_url'        => $defaultRepo,
                 'problem_analysis'  => '<p>Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap, dirancang untuk UTS mata kuliah pemrograman web.</p>',
             ]);
         }
@@ -30,14 +39,22 @@ class PortfolioController extends Controller
 
     public function projects()
     {
-        // Auto-create E-Bikes Rental Platform project in the database if it doesn't exist yet
-        if (!Project::where('slug', 'e-bikes-rental-platform')->exists()) {
+        $defaultSlug = env('E_BIKES_SLUG', 'ebikes-2026');
+        $defaultRepo = env('GITHUB_REPO', null);
+        
+        $existing = Project::where('title', 'E-Bikes Rental Platform')->first();
+        if ($existing) {
+            if ($existing->slug !== $defaultSlug) {
+                $existing->update(['slug' => $defaultSlug]);
+            }
+        } else {
             Project::create([
                 'title'             => 'E-Bikes Rental Platform',
+                'slug'              => $defaultSlug,
                 'short_description' => 'Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.',
                 'is_final_project'  => true,
                 'status'            => 'on_progress',
-                'github_url'        => 'https://github.com/LuSiNa03/ebikes-2026',
+                'github_url'        => $defaultRepo,
                 'problem_analysis'  => '<p>Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap, dirancang untuk UTS mata kuliah pemrograman web.</p>',
             ]);
         }
@@ -46,7 +63,13 @@ class PortfolioController extends Controller
         return view('portfolio.projects', compact('projects'));
     }
 
-    public function projectDetail($slug)
+    /**
+     * Show project detail by slug.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function projectDetail(string $slug): \Illuminate\Contracts\View\View
     {
         $project = Project::where('slug', $slug)->firstOrFail();
         return view('portfolio.project-detail', compact('project'));

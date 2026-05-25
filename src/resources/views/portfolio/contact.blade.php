@@ -66,16 +66,16 @@
                 <span class="text-3xl bg-maroon-soft p-4 rounded-2xl">📧</span>
                 <div class="min-w-0 flex-1">
                     <p class="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">Email Resmi</p>
-                    <p class="font-black text-maroon text-base sm:text-lg break-all">fadhilafiqbadruzzaman2402@gmail.com</p>
+                    <p class="font-black text-maroon text-base sm:text-lg break-all">{{ $profile?->email ?? 'fadhilafiqbadruzzaman2402@gmail.com' }}</p>
                 </div>
             </div>
             
-            <a href="https://github.com/LuSiNa03" target="_blank"
+            <a href="{{ $profile?->github ?? config('app.github_repo') ?? '#' }}" target="_blank"
                class="bg-white border border-gray-200/60 rounded-3xl p-6 flex items-center gap-5 shadow-lg w-full transform hover:scale-[1.01] transition duration-200 hover:border-red-200 transition text-decoration-none">
                 <span class="text-3xl bg-maroon-soft p-4 rounded-2xl">🔗</span>
                 <div class="min-w-0 flex-1">
                     <p class="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">GitHub Profile</p>
-                    <p class="font-black text-gray-800 text-base sm:text-lg break-all">github.com/LuSiNa03</p>
+                    <p class="font-black text-gray-800 text-base sm:text-lg break-all">{{ str_replace(['https://','http://'], '', $profile?->github ?? config('app.github_repo') ?? '') }}</p>
                 </div>
             </a>
         </div>

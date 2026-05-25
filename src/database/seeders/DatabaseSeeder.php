@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'tagline' => 'Full Stack Web Developer',
                 'bio'     => 'Saya adalah mahasiswa aktif Program Studi Teknik Informatika di Universitas Esa Unggul yang memiliki minat besar dan fokus mendalam pada pengembangan aplikasi web modern.',
                 'email'   => 'fadhilafiqbadruzzaman2402@gmail.com',
-                'github'  => 'https://github.com/LuSiNa03',
+                'github'  => env('GITHUB_REPO', 'https://github.com/LuSiNa03'),
                 'skills'  => ['Laravel', 'Filament', 'Livewire', 'Docker', 'MariaDB', 'Tailwind CSS'],
             ]);
         }
@@ -40,10 +40,11 @@ class DatabaseSeeder extends Seeder
         if (Project::count() === 0) {
             Project::create([
                 'title'             => 'E-Bikes Rental Platform',
-                'slug'              => 'ebikes-2026',
+                'slug'              => env('E_BIKES_SLUG', 'ebikes-2026'),
                 'short_description' => 'Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.',
                 'is_final_project'  => true,
                 'status'            => 'on_progress',
+                'github_url'        => env('GITHUB_REPO', null),
                 'problem_analysis'  => '<p>Isi dari laporan kamu...</p>',
             ]);
         }

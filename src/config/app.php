@@ -124,4 +124,12 @@ return [
     ],
 
     'asset_prefix' => env('ASSET_PREFIX', ''),
+    /*
+    |-------------------------------------------------------------------------
+    | Project GitHub Repo (optional)
+    |-------------------------------------------------------------------------
+    | Used across views/seeders/controllers as a fallback repository URL when
+    | a profile or project-specific `github_url` is not present.
+    */
+    'github_repo' => env('GITHUB_REPO', null),
 ];

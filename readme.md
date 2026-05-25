@@ -30,17 +30,15 @@ Website ini telah disesuaikan sepenuhnya dengan estetika visual kelas atas, meng
 
 1.  🎨 **Desain Palet Warna Kustom:**
     *   Mengadopsi kombinasi warna kontras premium: Maroon hangat, Maroon-soft pastel untuk latar elemen, border merah muda halus, dan latar belakang Off-white bersih.
-2.  📦 **Sistem Uploader Foto Profil Mandiri (`/upload.php`):**
-    *   Menyediakan fitur uploader gambar berbasis web yang aman (`https://portofolio.test/upload.php`). Gambar secara otomatis disimpan ke dalam folder public storage yang memiliki izin tulis 100% aman untuk Docker.
-3.  🔄 **Sinkronisasi Database Proyek Otomatis:**
+2.  🔄 **Sinkronisasi Database Proyek Otomatis:**
     *   Menerapkan deteksi data otomatis di sisi controller (`PortfolioController`). Begitu website utama dikunjungi, proyek utama **"E-Bikes Rental Platform"** akan langsung terdaftar di database MariaDB dengan link GitHub aktif Anda, sehingga langsung tersinkronisasi di Admin Panel secara otomatis!
-4.  🛡️ **Layout Bebas Tabrakan (Zero Overlap Layout):**
+3.  🛡️ **Layout Bebas Tabrakan (Zero Overlap Layout):**
     *   Navigasi menu atas dibuat melayang (*floating glassmorphism*) dengan jarak aman konten utama sebesar `140px` agar tidak menutupi atau bertabrakan dengan judul halaman sub-menu.
-5.  📧 **Tombol Kontak Skala Besar (Stacked & Enlarged):**
+4.  📧 **Tombol Kontak Skala Besar (Stacked & Enlarged):**
     *   Halaman kontak mengusung tombol kartu bertumpuk vertikal dengan ukuran besar (`p-6`, `rounded-3xl`, `shadow-lg`) untuk memastikan alamat email Anda yang panjang (`fadhilafiqbadruzzaman2402@gmail.com`) tertulis penuh, rapi, dan responsif di semua perangkat mobile, dilengkapi efek animasi membesar saat kursor melayang (*hover scale*).
-6.  🚲 **Tampilan "Project Saya" (E-Bikes Platform):**
+5.  🚲 **Tampilan "Project Saya" (E-Bikes Platform):**
     *   Proyek sepeda listrik Anda ditandai secara kustom di halaman utama dan portofolio dengan lencana kuning **`⭐ Project Saya`**, berstatus **`On Progress`**, dan terhubung langsung ke repositori GitHub Anda: [LuSiNa03/ebikes-2026](https://github.com/LuSiNa03/ebikes-2026).
-7.  ⚡ **Tailwind CSS Play CDN Failsafe:**
+6.  ⚡ **Tailwind CSS Play CDN Failsafe:**
     *   Dilengkapi dengan pemuat Tailwind CDN otomatis di sisi layout untuk mengantisipasi jika kompiler *Vite* di dalam container Docker lokal Anda tidak dijalankan. Desain layout dijamin akan selalu tampil cantik sempurna kapan saja dan di mana saja.
 
 ---
@@ -66,7 +64,7 @@ uts/
 └── src/                        # Source Code Aplikasi Laravel 12
     ├── app/                    # Controller, Model, & Filament Resources
     ├── database/               # Migrasi Tabel & Database Seeder kustom
-    ├── public/                 # Folder publik (termasuk upload.php)
+    ├── public/                 # Folder publik
     └── resources/views/        # Blade Templates (Home, Projects, Contact, Layout)
 ```
 
@@ -86,7 +84,6 @@ uts/
 3.  Akses website Anda di browser:
     *   **Halaman Utama:** [https://portofolio.test](https://portofolio.test)
     *   **Admin Panel:** [https://portofolio.test/admin](https://portofolio.test/admin)
-    *   **Uploader Foto:** [https://portofolio.test/upload.php](https://portofolio.test/upload.php)
 
 ---
 
@@ -99,4 +96,4 @@ uts/
 *   🏫 **Universitas Esa Unggul** - Teknik Informatika
 
 ---
-*Terakhir Diperbarui: 2026-05-18 — Disiapkan dengan sempurna untuk Penilaian UTS Pemrograman Web.*
+*Terakhir Diperbarui: 2026-05-25 — Disiapkan dengan sempurna untuk Penilaian UTS Pemrograman Web.*

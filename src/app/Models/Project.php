@@ -22,7 +22,9 @@ class Project extends Model
     {
         parent::boot();
         static::creating(function ($project) {
-            $project->slug = Str::slug($project->title);
+            if (empty($project->slug)) {
+                $project->slug = Str::slug($project->title);
+            }
         });
     }
 }

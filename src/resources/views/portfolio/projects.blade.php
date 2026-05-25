@@ -11,31 +11,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {{-- E-Bikes Rental Platform --}}
-            <a href="https://github.com/LuSiNa03/ebikes-2026" target="_blank"
-               class="group bg-white border border-yellow-400/80 rounded-2xl overflow-hidden shadow-md shadow-yellow-100/20 hover:shadow-xl hover:border-red-200 transition duration-300 relative">
-                <div class="absolute top-3 left-3 z-10 bg-yellow-400 text-yellow-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
-                    ⭐ Project Saya
-                </div>
-                <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
-                    <span class="text-5xl transform group-hover:scale-110 transition duration-300">🚲</span>
-                </div>
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-maroon transition duration-200">
-                        E-Bikes Rental Platform
-                    </h3>
-                    <p class="text-gray-500 text-xs sm:text-sm mb-4 leading-relaxed font-medium">Platform penyewaan sepeda listrik modern berbasis web dengan fitur manajemen rental yang lengkap.</p>
-                    <div class="flex items-center justify-between">
-                        <span class="inline-block text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-100">
-                            On Progress
-                        </span>
-                        <span class="text-xs text-gray-400 font-bold group-hover:text-maroon transition duration-200">Buka GitHub →</span>
-                    </div>
-                </div>
-            </a>
-
-            {{-- Filter out the hardcoded e-bikes project to avoid duplication --}}
-            @forelse($projects->whereNotIn('slug', ['project-akhir', 'e-bikes-rental-platform']) as $project)
+            @forelse($projects as $project)
             <a href="{{ route('projects.detail', $project->slug) }}"
                class="group bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 relative
                {{ $project->is_final_project ? 'border-yellow-400/80 shadow-md shadow-yellow-100/20' : 'border-gray-200/60 hover:border-red-200' }}">
@@ -49,11 +25,13 @@
                 @if($project->thumbnail)
                 <div class="w-full h-48 overflow-hidden">
                     <img src="{{ asset('storage/' . $project->thumbnail) }}"
-                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="{{ $project->title }}">
                 </div>
                 @else
                 <div class="w-full h-48 bg-maroon-soft flex items-center justify-center group-hover:bg-red-100/30 transition duration-300">
-                    <span class="text-5xl transform group-hover:scale-110 transition duration-300">💻</span>
+                    <span class="text-5xl transform group-hover:scale-110 transition duration-300">
+                        @if($project->slug === 'ebikes-2026') 🚲 @else 🚀 @endif
+                    </span>
                 </div>
                 @endif
 
