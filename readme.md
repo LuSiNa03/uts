@@ -3,6 +3,8 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Laravel-12.x-red?style=for-the-badge&logo=laravel" alt="Laravel 12">
   <img src="https://img.shields.io/badge/Filament-3.x-amber?style=for-the-badge&logo=laravel" alt="Filament 3">
+  <img src="https://img.shields.io/badge/Livewire-3.x-pink?style=for-the-badge&logo=livewire" alt="Livewire 3">
+  <img src="https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white" alt="Alpine.js">
   <img src="https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker" alt="Docker Ready">
   <img src="https://img.shields.io/badge/Theme-Maroon_&_Off--White-800000?style=for-the-badge" alt="Maroon Theme">
 </div>
@@ -24,6 +26,18 @@ Website portfolio personal premium ini dibangun khusus sebagai pemenuhan **Ujian
 
 Website ini telah disesuaikan sepenuhnya dengan estetika visual kelas atas, mengadopsi tema warna **Merah Maroon (#800000)** dan **Off-white (#FAF9F6)** yang elegan, bersih, dan tampak sangat profesional untuk penilalan akademik maupun portofolio karir nyata.
 
+
+---
+
+## 📸 Screenshot & Demo
+*(Silakan ganti URL placeholder di bawah ini dengan screenshot asli aplikasi Anda)*
+
+- **Tampilan Halaman Utama & Palet Warna Kustom:**
+  ![Screenshot Halaman Utama](./docs/Screenshot%20Halaman%20Utama.png)
+
+- **Tampilan Panel Admin (Filament):**
+  ![Screenshot Admin Panel](./docs/Screenshot%20Admin%20Panel.png)
+
 ---
 
 ## 🎯 Spesifikasi & Fitur Kustom yang Diterapkan
@@ -35,7 +49,9 @@ Website ini telah disesuaikan sepenuhnya dengan estetika visual kelas atas, meng
 3.  🛡️ **Layout Bebas Tabrakan (Zero Overlap Layout):**
     *   Navigasi menu atas dibuat melayang (*floating glassmorphism*) dengan jarak aman konten utama sebesar `140px` agar tidak menutupi atau bertabrakan dengan judul halaman sub-menu.
 4.  📧 **Tombol Kontak Skala Besar (Stacked & Enlarged):**
-    *   Halaman kontak mengusung tombol kartu bertumpuk vertikal dengan ukuran besar (`p-6`, `rounded-3xl`, `shadow-lg`) untuk memastikan alamat email Anda yang panjang (`fadhilafiqbadruzzaman2402@gmail.com`) tertulis penuh, rapi, dan responsif di semua perangkat mobile, dilengkapi efek animasi membesar saat kursor melayang (*hover scale*).
+    *   Halaman kontak mengusung tombol kartu bertumpuk vertikal dengan ukuran besar (`p-6`, `rounded-3xl`, `shadow-lg`).
+    *   Desain ini memastikan alamat email Anda yang panjang (`fadhilafiqbadruzzaman2402@gmail.com`) tertulis penuh, rapi, dan responsif.
+    *   Sangat bersahabat di perangkat mobile dan dilengkapi efek animasi membesar saat kursor melayang (*hover scale*).
 5.  🚲 **Tampilan "Project Saya" (E-Bikes Platform):**
     *   Proyek sepeda listrik Anda ditandai secara kustom di halaman utama dan portofolio dengan lencana kuning **`⭐ Project Saya`**, berstatus **`On Progress`**, dan terhubung langsung ke repositori GitHub Anda: [LuSiNa03/ebikes-2026](https://github.com/LuSiNa03/ebikes-2026).
 6.  ⚡ **Tailwind CSS Play CDN Failsafe:**
@@ -82,8 +98,28 @@ uts/
     docker-compose up -d
     ```
 3.  Akses website Anda di browser:
-    *   **Halaman Utama:** [https://portofolio.test](https://portofolio.test)
-    *   **Admin Panel:** [https://portofolio.test/admin](https://portofolio.test/admin)
+    *   **Halaman Utama:** [https://portofolio.test]
+    *   **Admin Panel:** [https://portofolio.test/admin]
+
+### 📖 Panduan Penggunaan
+*   **Pengunjung (Frontend):** Akses halaman utama untuk melihat profil dan portofolio proyek. Navigasi melalui menu di atas untuk mengeksplorasi halaman lain.
+*   **Administrator (Filament):** Login ke `/admin` untuk masuk ke panel Filament. Di dalam dashboard ini, Anda dapat mengelola data portofolio, menambah proyek baru, dan mengatur profil dengan mudah menggunakan antarmuka interaktif yang elegan.
+
+---
+
+## 🤝 Panduan Kontribusi
+Kontribusi, isu, dan permintaan fitur (feature request) sangat dipersilakan!
+Jangan ragu untuk memeriksa halaman issues repository ini jika Anda ingin berkontribusi.
+1. Fork repository ini.
+2. Buat branch fitur Anda (`git checkout -b feature/FiturBaru`).
+3. Commit perubahan Anda menggunakan [Conventional Commits](https://www.conventionalcommits.org/).
+4. Push ke branch (`git push origin feature/FiturBaru`).
+5. Buat *Pull Request* baru.
+
+---
+
+## 📜 Lisensi
+Proyek ini didistribusikan di bawah **MIT License**. Lihat file [LICENSE](./LICENSE) untuk informasi lebih lanjut. Lisensi ini mengizinkan penggunaan, modifikasi, dan distribusi secara bebas.
 
 ---
 
@@ -95,5 +131,3 @@ uts/
 *   🏫 **NIM:** 20240801119
 *   🏫 **Universitas Esa Unggul** - Teknik Informatika
 
----
-*Terakhir Diperbarui: 2026-05-25 — Disiapkan dengan sempurna untuk Penilaian UTS Pemrograman Web.*

@@ -130,14 +130,19 @@
             align-items: center !important;
         }
     </style>
+    @livewireStyles
 </head>
 <body class="bg-offwhite text-gray-800 font-sans antialiased">
 
     {{-- NAVBAR --}}
+    @php
+        $globalProfile = \App\Models\Profile::first();
+        $logoName = $globalProfile ? str_replace(' ', '', explode(' ', $globalProfile->name)[0]) : 'Portfolio';
+    @endphp
     <div class="custom-header">
         <nav class="custom-nav">
             <a href="{{ route('home') }}" class="custom-logo">
-                &lt;FadhilAfiq /&gt;
+                &lt;{{ $logoName }} /&gt;
             </a>
             <div class="custom-menu">
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
@@ -159,7 +164,7 @@
 
     <footer class="bg-white border-t border-gray-100 mt-20">
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span class="font-black text-maroon">&lt;FadhilAfiq /&gt;</span>
+            <span class="font-black text-maroon">&lt;{{ $logoName }} /&gt;</span>
             <p class="text-gray-400 text-xs sm:text-sm">&copy; {{ date('Y') }} — Dibangun dengan Laravel, Filament & Docker</p>
             <div class="flex gap-6 text-sm font-medium text-gray-500">
                 <a href="{{ route('home') }}" class="hover:text-maroon transition">Home</a>
@@ -169,5 +174,25 @@
         </div>
     </footer>
 
+    {{-- Komponen Alpine.js: Tombol Scroll ke Atas --}}
+    <div x-data="{ show: false }" 
+         @scroll.window="show = (window.pageYOffset > 200) ? true : false"
+         class="fixed bottom-8 right-8 z-50">
+        <button x-show="show" 
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-4"
+                @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+                class="bg-maroon text-white p-3.5 rounded-full shadow-xl hover:bg-maroon-hover hover:-translate-y-1 transition-all flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        </button>
+    </div>
+
+    @livewireScripts
 </body>
 </html>

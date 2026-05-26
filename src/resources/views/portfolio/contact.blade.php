@@ -66,7 +66,7 @@
                 <span class="text-3xl bg-maroon-soft p-4 rounded-2xl">📧</span>
                 <div class="min-w-0 flex-1">
                     <p class="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">Email Resmi</p>
-                    <p class="font-black text-maroon text-base sm:text-lg break-all">{{ $profile?->email ?? 'fadhilafiqbadruzzaman2402@gmail.com' }}</p>
+                    <p class="font-black text-maroon text-base sm:text-lg break-all">{{ $profile?->email }}</p>
                 </div>
             </div>
             

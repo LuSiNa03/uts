@@ -20,15 +20,15 @@
 
             {{-- Main Title --}}
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-4 tracking-tight">
-                Hai, Saya <span class="text-maroon">{{ $profile?->name ?? 'Fadhil Afiq Badruzzaman' }}</span>
+                Hai, Saya <span class="text-maroon">{{ $profile?->name ?? config('app.name') }}</span>
             </h1>
 
             {{-- Tagline --}}
-            <p class="text-lg font-bold text-maroon mb-6 tracking-wide">{{ $profile?->tagline ?? 'Full Stack Web Developer' }}</p>
+            <p class="text-lg font-bold text-maroon mb-6 tracking-wide">{{ $profile?->tagline }}</p>
 
             {{-- Bio --}}
             <p class="text-gray-600 leading-relaxed text-sm sm:text-base mb-8 font-medium">
-                {{ $profile?->bio ?? 'Saya adalah mahasiswa aktif Program Studi Teknik Informatika di Universitas Esa Unggul yang memiliki minat besar dan fokus mendalam pada pengembangan aplikasi web modern. Berpengalaman dalam merancang serta membangun aplikasi web yang responsif, berkinerja tinggi, aman, dan mudah diskalakan. Saya berkomitmen untuk terus menghadirkan pengalaman pengguna (user experience) yang optimal serta solusi rekayasa perangkat lunak yang andal dengan pendekatan arsitektur kode yang bersih.' }}
+                {{ $profile?->bio }}
             </p>
 
             {{-- Tech Stack --}}
@@ -65,6 +65,9 @@
                    class="px-6 py-3.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl text-sm font-bold shadow-sm transition duration-200">
                     GitHub
                 </a>
+                
+                {{-- Komponen Livewire Kustom --}}
+                <livewire:like-button />
             </div>
         </div>
 
@@ -75,25 +78,20 @@
                 <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-inner bg-gray-50 relative border border-gray-100">
                     @if($profile?->avatar)
                         <img src="{{ asset('storage/' . $profile->avatar) }}" class="w-full h-full object-cover" alt="Profile Photo">
-                    @elseif(file_exists(storage_path('app/public/fadhil.jpg')))
-                        <img src="{{ asset('storage/fadhil.jpg') }}" class="w-full h-full object-cover" alt="Profile Photo">
-                    @elseif(file_exists(public_path('fadhil.jpg')))
-                        <img src="{{ asset('fadhil.jpg') }}" class="w-full h-full object-cover" alt="Profile Photo">
                     @else
                         <!-- Clean Premium Placeholder -->
                         <div class="w-full h-full bg-maroon-soft flex flex-col items-center justify-center p-6 text-center">
                             <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center text-4xl shadow-md mb-4 border border-red-100">👨‍💻</div>
-                            <h4 class="text-base font-black text-gray-900 mb-1">{{ $profile?->name ?? 'Fadhil Afiq Badruzzaman' }}</h4>
-                            <p class="text-xs font-bold text-maroon uppercase tracking-wider">Teknik Informatika</p>
+                            <h4 class="text-base font-black text-gray-900 mb-1">{{ $profile?->name ?? config('app.name') }}</h4>
                         </div>
                     @endif
                 </div>
 
                 {{-- Campus Label Box --}}
                 <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                    <p class="text-[10px] font-black text-maroon uppercase tracking-wider mb-1">Universitas Esa Unggul</p>
-                    <h3 class="text-base font-bold text-gray-900 mb-0.5">Teknik Informatika</h3>
-                    <p class="text-xs text-gray-500 font-medium">Fokus pada Full Stack Web Development</p>
+                    <p class="text-[10px] font-black text-maroon uppercase tracking-wider mb-1">{{ env('PORTFOLIO_CAMPUS', 'Universitas') }}</p>
+                    <h3 class="text-base font-bold text-gray-900 mb-0.5">{{ env('PORTFOLIO_MAJOR', 'Program Studi') }}</h3>
+                    <p class="text-xs text-gray-500 font-medium">Fokus pada Web Development</p>
                 </div>
             </div>
         </div>

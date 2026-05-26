@@ -14,8 +14,16 @@ echo "✅ File berhasil dikumpulkan."
 echo ""
 
 # 2. Commit perubahan
+COMMIT_MSG="$1"
+if [ -z "$COMMIT_MSG" ]; then
+    echo "⚠️ Pesan commit tidak diberikan."
+    echo "Gunakan: ./push.sh \"pesan commit Anda\""
+    echo "Menggunakan pesan default sementara..."
+    COMMIT_MSG="chore(update): UTS Pemrograman Web - Portfolio Premium Fadhil Afiq Badruzzaman"
+fi
+
 echo "💾 2. Membuat riwayat commit UTS..."
-git commit -m "UTS Pemrograman Web - Portfolio Premium Fadhil Afiq Badruzzaman"
+git commit -m "$COMMIT_MSG"
 echo "✅ Commit berhasil dibuat."
 echo ""
 
