@@ -22,22 +22,29 @@ class ProfileResource extends Resource
             Forms\Components\Section::make('Info Pribadi')->schema([
                 Forms\Components\TextInput::make('name')->required(),
                 Forms\Components\TextInput::make('tagline'),
+                Forms\Components\TextInput::make('university')->label('Universitas / Kampus'),
                 Forms\Components\Textarea::make('bio')->columnSpanFull(),
+                Forms\Components\Textarea::make('career_objective')->label('Career Objective')->columnSpanFull(),
                 Forms\Components\FileUpload::make('avatar')
                     ->image()->directory('profile')->columnSpanFull(),
-            ])->columns(2),
+            ])->columns(3),
+
+            Forms\Components\Section::make('Lencana Melayang (Hero Badges)')
+                ->description('Kelola lencana melayang pada bagian Hero')
+                ->schema([
+                    Forms\Components\Repeater::make('hero_badges')
+                        ->label('Lencana Hero')
+                        ->schema([
+                            Forms\Components\TextInput::make('emoji')->label('Emoji')->placeholder('🚀')->required(),
+                            Forms\Components\TextInput::make('label')->label('Teks Label')->placeholder('Full Stack')->required(),
+                        ])->columns(2)->defaultItems(0)->addActionLabel('+ Tambah Lencana')->columnSpanFull(),
+                ]),
 
             Forms\Components\Section::make('Kontak & Sosial')->schema([
                 Forms\Components\TextInput::make('email')->email(),
                 Forms\Components\TextInput::make('github')->url(),
                 Forms\Components\TextInput::make('linkedin')->url(),
             ])->columns(3),
-
-            Forms\Components\Section::make('Skills')->schema([
-                Forms\Components\TagsInput::make('skills')
-                    ->placeholder('Tambah skill, tekan Enter')
-                    ->columnSpanFull(),
-            ]),
         ]);
     }
 

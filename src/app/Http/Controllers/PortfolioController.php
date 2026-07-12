@@ -34,7 +34,17 @@ class PortfolioController extends Controller
 
         $profile  = Profile::first();
         $projects = Project::orderBy('order')->take(3)->get();
-        return view('portfolio.home', compact('profile', 'projects'));
+        
+        $skills = \App\Models\Skill::orderBy('order')->get();
+        $experiences = \App\Models\Experience::orderBy('order')->get();
+        $education = \App\Models\Education::orderBy('order')->get();
+        $certificates = \App\Models\Certificate::orderBy('order')->get();
+        $achievements = \App\Models\Achievement::orderBy('order')->get();
+        $blogs = \App\Models\Blog::orderBy('order')->get();
+
+        return view('portfolio.home', compact(
+            'profile', 'projects', 'skills', 'experiences', 'education', 'certificates', 'achievements', 'blogs'
+        ));
     }
 
     public function projects()

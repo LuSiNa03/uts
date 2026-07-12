@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Filament\Admin\Resources;
+
+use App\Filament\Admin\Resources\CertificateResource\Pages;
+use App\Models\Certificate;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+
+class CertificateResource extends Resource
+{
+    protected static ?string $model = Certificate::class;
+    protected static ?string $navigationIcon = 'heroicon-o-star';
+    protected static ?string $navigationGroup = 'Portfolio';
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema([
+            Forms\Components\TextInput::make('name')->required(),
+            Forms\Components\TextInput::make('issuer')->placeholder('Udemy / Dicoding'),
+            Forms\Components\TextInput::make('date')->placeholder('2024'),
+            Forms\Components\FileUpload::make('image')->image()->directory('certificates'),
+            Forms\Components\TextInput::make('color')->default('#800020')->placeholder('#800020'),
+            Forms\Components\TextInput::make('order')->numeric()->default(0),
+        ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('issuer')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('date'),
+                Tables\Columns\TextColumn::make('order')->sortable(),
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ManageCertificates::route('/'),
+        ];
+    }
+}
